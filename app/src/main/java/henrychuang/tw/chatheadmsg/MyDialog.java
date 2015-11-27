@@ -1,5 +1,4 @@
 package henrychuang.tw.chatheadmsg;
-import henrychuang.tw.chatheadmsg.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ public class MyDialog extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
@@ -36,7 +34,6 @@ public class MyDialog extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				String str = edt.getText().toString();
 				if(str.length() > 0){
 //					ChatHeadService.showMsg(MyDialog.this, str);
@@ -52,7 +49,6 @@ public class MyDialog extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				finish();
 			}
 		});
@@ -62,21 +58,18 @@ public class MyDialog extends Activity {
 	
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		active = true;
 	}
 
 	@Override
 	protected void onPause() {
-		// TODO Auto-generated method stub
 		super.onPause();
 		active = false;
 	}
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		active = false;
 	}

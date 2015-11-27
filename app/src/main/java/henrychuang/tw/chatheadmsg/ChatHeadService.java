@@ -12,7 +12,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -90,7 +89,7 @@ public class ChatHeadService extends Service {
 			boolean isLongclick = false, inBounded = false;
 			int remove_img_width = 0, remove_img_height = 0;
 
-			Handler handler_longClick = new Handler();
+		/*	Handler handler_longClick = new Handler();
 			Runnable runnable_longClick = new Runnable() {
 
 				@Override
@@ -100,10 +99,10 @@ public class ChatHeadService extends Service {
 
 					isLongclick = true;
 					removeView.setVisibility(View.VISIBLE);
-					chathead_longclick();
+				//	chathead_longclick();
 				}
 			};
-
+*/
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
 				WindowManager.LayoutParams layoutParams = (WindowManager.LayoutParams) chatheadView.getLayoutParams();
@@ -115,7 +114,7 @@ public class ChatHeadService extends Service {
 				switch (event.getAction()) {
 					case MotionEvent.ACTION_DOWN:
 						time_start = System.currentTimeMillis();
-						handler_longClick.postDelayed(runnable_longClick, 600);
+				//		handler_longClick.postDelayed(runnable_longClick, 600);
 
 						remove_img_width = removeImg.getLayoutParams().width;
 						remove_img_height = removeImg.getLayoutParams().height;
@@ -167,6 +166,7 @@ public class ChatHeadService extends Service {
 								windowManager.updateViewLayout(chatheadView, layoutParams);
 								break;
 							}else{
+
 								inBounded = false;
 								removeImg.getLayoutParams().height = remove_img_height;
 								removeImg.getLayoutParams().width = remove_img_width;
@@ -194,7 +194,7 @@ public class ChatHeadService extends Service {
 						removeView.setVisibility(View.GONE);
 						removeImg.getLayoutParams().height = remove_img_height;
 						removeImg.getLayoutParams().width = remove_img_width;
-						handler_longClick.removeCallbacks(runnable_longClick);
+//						handler_longClick.removeCallbacks(runnable_longClick);
 
 						if(inBounded){
 							if(MyDialog.active){
@@ -377,9 +377,9 @@ public class ChatHeadService extends Service {
 		}
 		
 	}
-	
-	private void chathead_longclick(){
-		Log.d(Utility.LogTag, "Into ChatHeadService.chathead_longclick() ");
+
+	//private void chathead_longclick(){
+		/*Log.d(Utility.LogTag, "Into ChatHeadService.chathead_longclick() ");
 		
 		WindowManager.LayoutParams param_remove = (WindowManager.LayoutParams) removeView.getLayoutParams();
 		int x_cord_remove = (szWindow.x - removeView.getWidth()) / 2;
@@ -389,8 +389,9 @@ public class ChatHeadService extends Service {
 		param_remove.y = y_cord_remove;
 		
 		windowManager.updateViewLayout(removeView, param_remove);
-	}
-	
+		*/
+	//}
+
 	private void showMsg(String sMsg){
 		if(txtView != null && chatheadView != null ){
 			Log.d(Utility.LogTag, "ChatHeadService.showMsg -> sMsg=" + sMsg);
@@ -429,7 +430,6 @@ public class ChatHeadService extends Service {
 		
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
 			if(txtView != null){
 				txtView.setVisibility(View.GONE);
 			}
@@ -438,7 +438,6 @@ public class ChatHeadService extends Service {
 	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		// TODO Auto-generated method stub
 		Log.d(Utility.LogTag, "ChatHeadService.onStartCommand() -> startId=" + startId);
 
 		if(intent != null){
@@ -453,7 +452,6 @@ public class ChatHeadService extends Service {
 
 						@Override
 						public void run() {
-							// TODO Auto-generated method stub
 							showMsg(sMsg);
 						}
 					}, 300);
@@ -477,7 +475,6 @@ public class ChatHeadService extends Service {
 	
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		
 		if(chatheadView != null){
@@ -497,7 +494,6 @@ public class ChatHeadService extends Service {
 	
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
 		Log.d(Utility.LogTag, "ChatHeadService.onBind()");
 		return null;
 	}
